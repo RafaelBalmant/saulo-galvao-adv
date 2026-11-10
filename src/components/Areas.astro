@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Icone from './Icone.astro';
+import { linkWhatsapp } from '../lib/whatsapp';
+const areas = (await getCollection('areas')).sort((a, b) => a.data.ordem - b.data.ordem);
+---
+<section id="areas" class="bg-white py-20 lg:py-28">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Áreas de Atuação</p>
+      <h2 class="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">Suporte jurídico para o ambiente empresarial</h2>
+    </div>
+    <div class="mt-12 divide-y divide-marinho/10 border-y border-marinho/10">
+      {areas.map((a, i) => (
+        <details class="group" open={i === 0} name="areas">
+          <summary class="flex cursor-pointer list-none items-center gap-5 py-6 [&::-webkit-details-marker]:hidden">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-gelo text-marinho transition-colors group-open:bg-marinho group-open:text-white">
+              <Icone nome={a.data.icone} />
+            </span>
+            <h3 class="flex-1 text-lg font-semibold sm:text-xl">{a.data.titulo}</h3>
+            <Icone nome="mais" class="h-5 w-5 shrink-0 text-vinho transition-transform duration-300 group-open:rotate-45" />
+          </summary>
+          <div class="pb-8 pl-[4.25rem] pr-4">
+            <p class="max-w-3xl leading-relaxed">{a.data.resumo}</p>
+            <a href={`/areas/${a.id}`} class="mt-5 inline-flex items-center gap-2 font-titulo text-sm font-semibold text-vinho hover:underline">
+              Saiba mais sobre esta área <Icone nome="seta" class="h-4 w-4" />
+            </a>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="mt-16 flex flex-col items-start justify-between gap-6 rounded-lg bg-marinho p-8 text-white sm:flex-row sm:items-center sm:p-10">
+      <div>
+        <h3 class="text-2xl font-semibold !text-white">Precisa de suporte jurídico?</h3>
+        <p class="mt-2 text-white/70">Apresente o cenário da sua empresa e agende uma conversa inicial.</p>
+      </div>
+      <a href={linkWhatsapp('Olá! Acessei o site do escritório e gostaria de solicitar uma análise de cenário para minha empresa.')} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="cta_areas" class="btn-primario shrink-0">Solicitar Análise de Cenário</a>
+    </div>
+  </div>
+</section>

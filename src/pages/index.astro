@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import QuemSomos from '../components/QuemSomos.astro';
+import Valores from '../components/Valores.astro';
+import Areas from '../components/Areas.astro';
+import Contato from '../components/Contato.astro';
+import site from '../data/site.json';
+---
+<Base
+  title={`${site.nome} | Advocacia Empresarial, Societária e Patrimonial`}
+  description="Inteligência jurídica, gestão de riscos e suporte estratégico para empresas: Direito Empresarial e Societário, Bancário, Planejamento Patrimonial e Contratos."
+>
+  <Hero />
+  <QuemSomos />
+  <Valores />
+  <Areas />
+  <Contato />
+</Base>

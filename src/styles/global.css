@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "@fontsource-variable/montserrat";
+@import "@fontsource-variable/open-sans";
+
+@theme {
+  --color-marinho: #0F1E36;
+  --color-marinho-900: #0a1527;
+  --color-grafite: #2C3539;
+  --color-vinho: #6B1D2F;
+  --color-vinho-700: #561726;
+  --color-gelo: #F8F9FA;
+  --font-titulo: "Montserrat Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Open Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-white font-sans text-grafite antialiased; }
+  h1, h2, h3, h4 { @apply font-titulo text-marinho; text-wrap: balance; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-vinho; }
+}
+
+@utility container-site { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-titulo text-sm font-semibold tracking-wide transition-colors duration-200; }
+@utility btn-primario { @apply btn bg-vinho text-white shadow-sm hover:bg-vinho-700; }
+@utility btn-contorno { @apply btn border border-white/40 text-white hover:border-white hover:bg-white/10; }
+@utility btn-contorno-escuro { @apply btn border border-marinho/30 text-marinho hover:border-vinho hover:text-vinho; }
+@utility eyebrow { @apply font-titulo text-xs font-semibold uppercase tracking-[0.2em] text-vinho; }
+@utility campo { @apply w-full rounded-md border border-grafite/20 bg-white px-4 py-3 text-grafite placeholder:text-grafite/50 focus:border-marinho focus:outline-none focus:ring-2 focus:ring-marinho/20; }

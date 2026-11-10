@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Icone from '../components/Icone.astro';
+import { linkWhatsapp } from '../lib/whatsapp';
+---
+<Base title="Mensagem enviada | Saulo Galvão Advogados" description="Recebemos sua mensagem." noindex>
+  <section class="bg-gelo py-24 lg:py-32">
+    <div class="container-site max-w-2xl text-center">
+      <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-marinho text-white"><Icone nome="check" class="h-8 w-8" /></span>
+      <h1 class="mt-8 text-3xl font-semibold sm:text-4xl">Mensagem recebida</h1>
+      <p class="mt-5 leading-relaxed">Obrigado pelo contato. Nossa equipe retornará em breve para agendar uma conversa inicial. Se preferir, fale agora pelo WhatsApp.</p>
+      <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href={linkWhatsapp()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="obrigado" class="btn-primario">Falar pelo WhatsApp</a>
+        <a href="/" class="btn-contorno-escuro">Voltar ao site</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Dispara a conversão de lead apenas quando o formulário foi enviado (não em visitas diretas)
+    try {
+      const lead = sessionStorage.getItem('lead');
+      if (lead) {
+        const l = JSON.parse(lead);
+        const w = window as any;
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({
+          event: 'generate_lead',
+          area_atuacao: l.area,
+          user_data: { email: l.email, phone_number: l.telefone ? '+55' + l.telefone.replace(/^55/, '') : undefined },
+        });
+        sessionStorage.removeItem('lead');
+      }
+    } catch {}
+  </script>
+</Base>

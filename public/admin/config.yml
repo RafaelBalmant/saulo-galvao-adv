@@ -1,0 +1,67 @@
+# Sveltia CMS: painel de edição em /admin
+# O login usa o GitHub. Na Cloudflare é preciso publicar o "sveltia-cms-auth" (Worker grátis)
+# e colocar a URL dele em base_url. Ver README.
+backend:
+  name: github
+  repo: RafaelBalmant/saulo-galvao-adv
+  branch: main
+  # base_url: https://sveltia-cms-auth.SEU-USUARIO.workers.dev
+
+locale: pt
+media_folder: src/assets/uploads
+public_folder: ../../assets/uploads
+
+collections:
+  - name: configuracoes
+    label: Configurações do site
+    files:
+      - name: site
+        label: Contatos e dados gerais
+        file: src/data/site.json
+        fields:
+          - { name: nome, label: Nome do escritório }
+          - { name: slogan, label: Slogan }
+          - { name: advogado, label: Nome do advogado }
+          - { name: oab, label: Número da OAB }
+          - { name: whatsapp, label: "WhatsApp (só números, com 55 e DDD)" }
+          - { name: telefoneExibicao, label: Telefone exibido }
+          - { name: email, label: E-mail }
+          - { name: endereco, label: Endereço }
+          - { name: mapaUrl, label: Link do Google Maps }
+          - { name: cidade, label: Cidade }
+          - { name: uf, label: UF }
+          - { name: mensagemWhatsapp, label: Mensagem padrão do WhatsApp, widget: text }
+          - { name: gtmId, label: "ID do Google Tag Manager (GTM-XXXX)", required: false }
+          - { name: instagram, label: Instagram, required: false }
+          - { name: linkedin, label: LinkedIn, required: false }
+
+  - name: areas
+    label: Áreas de Atuação
+    label_singular: Área
+    folder: src/content/areas
+    create: true
+    slug: "{{slug}}"
+    identifier_field: titulo
+    fields:
+      - { name: titulo, label: Título }
+      - { name: ordem, label: Ordem na lista, widget: number, value_type: int, default: 99 }
+      - { name: icone, label: Ícone, widget: select, options: [predio, banco, escudo, contrato] }
+      - { name: resumo, label: Resumo (home), widget: text }
+      - { name: h1, label: Título da landing page }
+      - { name: subtitulo, label: Subtítulo da landing page, widget: text }
+      - { name: seoTitle, label: Título para o Google }
+      - { name: seoDescription, label: Descrição para o Google, widget: text }
+      - { name: mensagemWhatsapp, label: Mensagem do WhatsApp desta área, widget: text }
+      - name: topicos
+        label: Tópicos
+        widget: list
+        fields:
+          - { name: titulo, label: Título }
+          - { name: texto, label: Texto, widget: text }
+      - name: faq
+        label: Perguntas frequentes
+        widget: list
+        required: false
+        fields:
+          - { name: pergunta, label: Pergunta }
+          - { name: resposta, label: Resposta, widget: text }

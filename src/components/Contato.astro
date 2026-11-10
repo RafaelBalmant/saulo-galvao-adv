@@ -1,0 +1,78 @@
+---
+import Icone from './Icone.astro';
+import site from '../data/site.json';
+import { linkWhatsapp } from '../lib/whatsapp';
+interface Props { area?: string }
+const { area = '' } = Astro.props;
+---
+<section id="contato" class="bg-gelo py-20 lg:py-28">
+  <div class="container-site grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <div>
+      <p class="eyebrow">Contato</p>
+      <h2 class="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">Fale com o escritório</h2>
+      <p class="mt-5 leading-relaxed">Envie sua mensagem pelo formulário ou fale diretamente pelo WhatsApp. Retornaremos o contato para agendar uma conversa inicial.</p>
+      <ul class="mt-10 space-y-6">
+        <li>
+          <a href={linkWhatsapp()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="contato" class="flex items-center gap-4 hover:text-vinho">
+            <span class="flex h-11 w-11 items-center justify-center rounded-md bg-marinho text-white"><Icone nome="whatsapp" class="h-5 w-5" /></span>
+            <span><span class="block text-xs uppercase tracking-wider text-grafite/60">Telefone / WhatsApp</span>{site.telefoneExibicao}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} data-conversao="email_click" data-local="contato" class="flex items-center gap-4 hover:text-vinho">
+            <span class="flex h-11 w-11 items-center justify-center rounded-md bg-marinho text-white"><Icone nome="email" class="h-5 w-5" /></span>
+            <span><span class="block text-xs uppercase tracking-wider text-grafite/60">E-mail</span>{site.email}</span>
+          </a>
+        </li>
+        {site.endereco && (
+        <li>
+          <a href={site.mapaUrl || undefined} target="_blank" rel="noopener" class="flex items-center gap-4 hover:text-vinho">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-marinho text-white"><Icone nome="local" class="h-5 w-5" /></span>
+            <span><span class="block text-xs uppercase tracking-wider text-grafite/60">Endereço</span>{site.endereco}</span>
+          </a>
+        </li>
+        )}
+      </ul>
+    </div>
+
+    <form id="form-contato" action="/api/contato" method="post" class="rounded-lg bg-white p-6 shadow-xl sm:p-10">
+      <input type="hidden" name="area" value={area} />
+      <div class="hidden" aria-hidden="true"><label>Não preencha<input type="text" name="site_url" tabindex="-1" autocomplete="off" /></label></div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block sm:col-span-2"><span class="mb-1.5 block text-sm font-medium text-marinho">Nome *</span><input class="campo" name="nome" required autocomplete="name" /></label>
+        <label class="block"><span class="mb-1.5 block text-sm font-medium text-marinho">E-mail *</span><input class="campo" type="email" name="email" required autocomplete="email" /></label>
+        <label class="block"><span class="mb-1.5 block text-sm font-medium text-marinho">Telefone *</span><input class="campo" type="tel" name="telefone" required autocomplete="tel" inputmode="tel" /></label>
+        <label class="block sm:col-span-2"><span class="mb-1.5 block text-sm font-medium text-marinho">Empresa</span><input class="campo" name="empresa" autocomplete="organization" /></label>
+        <label class="block sm:col-span-2"><span class="mb-1.5 block text-sm font-medium text-marinho">Mensagem *</span><textarea class="campo min-h-32" name="mensagem" required rows="4"></textarea></label>
+      </div>
+      <p class="mt-4 text-xs text-grafite/60">Ao enviar, você concorda com o uso dos dados para retorno do contato, conforme nossa <a href="/politica-de-privacidade" class="underline">Política de Privacidade</a>.</p>
+      <button type="submit" class="btn-primario mt-6 w-full sm:w-auto">Enviar mensagem</button>
+      <p id="form-erro" hidden class="mt-4 text-sm text-vinho">Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp.</p>
+    </form>
+  </div>
+</section>
+<script>
+  const form = document.getElementById('form-contato') as HTMLFormElement;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const botao = form.querySelector('button[type=submit]') as HTMLButtonElement;
+    const erro = document.getElementById('form-erro')!;
+    botao.disabled = true; botao.textContent = 'Enviando...'; erro.hidden = true;
+    const dados = new FormData(form);
+    try {
+      const r = await fetch(form.action, { method: 'POST', body: dados, headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error();
+      // Dados para conversões otimizadas (Enhanced Conversions) no GTM
+      try {
+        sessionStorage.setItem('lead', JSON.stringify({
+          area: dados.get('area') || '',
+          email: dados.get('email'),
+          telefone: String(dados.get('telefone') || '').replace(/\D/g, ''),
+        }));
+      } catch {}
+      window.location.href = '/obrigado';
+    } catch {
+      erro.hidden = false; botao.disabled = false; botao.textContent = 'Enviar mensagem';
+    }
+  });
+</script>

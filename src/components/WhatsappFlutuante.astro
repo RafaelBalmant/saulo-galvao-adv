@@ -1,0 +1,17 @@
+---
+import Icone from './Icone.astro';
+import { linkWhatsapp } from '../lib/whatsapp';
+interface Props { mensagem?: string }
+const { mensagem } = Astro.props;
+---
+<a
+  href={linkWhatsapp(mensagem)}
+  target="_blank"
+  rel="noopener"
+  data-conversao="whatsapp_click"
+  data-local="flutuante"
+  aria-label="Conversar pelo WhatsApp"
+  class="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/20 transition-transform hover:scale-105"
+>
+  <Icone nome="whatsapp" class="h-7 w-7" />
+</a>

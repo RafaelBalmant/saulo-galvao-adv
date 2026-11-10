@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import logo from '../assets/logo-branco.png';
+import Icone from './Icone.astro';
+import site from '../data/site.json';
+import { linkWhatsapp } from '../lib/whatsapp';
+const areas = (await getCollection('areas')).sort((a, b) => a.data.ordem - b.data.ordem);
+const ano = new Date().getFullYear();
+---
+<footer class="bg-marinho-900 text-white/70">
+  <div class="container-site grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <Image src={logo} alt="Saulo Galvão Advogados" width={170} class="h-16 w-auto" />
+      <p class="mt-6 max-w-sm text-sm leading-relaxed">{site.slogan}</p>
+      <p class="mt-4 text-xs text-white/50">{site.advogado} · {site.oab}</p>
+    </div>
+    <div>
+      <h2 class="font-titulo text-sm font-semibold uppercase tracking-widest text-white">Áreas de Atuação</h2>
+      <ul class="mt-5 space-y-3 text-sm">
+        {areas.map((a) => <li><a href={`/areas/${a.id}`} class="hover:text-white">{a.data.titulo}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-titulo text-sm font-semibold uppercase tracking-widest text-white">Contato</h2>
+      <ul class="mt-5 space-y-4 text-sm">
+        <li><a href={linkWhatsapp()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="rodape" class="flex gap-3 hover:text-white"><Icone nome="whatsapp" class="h-5 w-5 shrink-0" />{site.telefoneExibicao}</a></li>
+        <li><a href={`mailto:${site.email}`} data-conversao="email_click" data-local="rodape" class="flex gap-3 hover:text-white"><Icone nome="email" class="h-5 w-5 shrink-0" />{site.email}</a></li>
+        {site.endereco && <li><a href={site.mapaUrl || undefined} target="_blank" rel="noopener" class="flex gap-3 hover:text-white"><Icone nome="local" class="h-5 w-5 shrink-0" />{site.endereco}</a></li>}
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-site flex flex-col gap-2 py-6 text-xs text-white/50 sm:flex-row sm:justify-between">
+      <p>© {ano} {site.nome}. Todos os direitos reservados.</p>
+      <a href="/politica-de-privacidade" class="hover:text-white">Política de Privacidade</a>
+    </div>
+  </div>
+</footer>

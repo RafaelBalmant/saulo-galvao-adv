@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-branco.png';
+import { linkWhatsapp } from '../lib/whatsapp';
+const links = [
+  { href: '/#quem-somos', label: 'Quem Somos' },
+  { href: '/#valores', label: 'Princípios' },
+  { href: '/#areas', label: 'Áreas de Atuação' },
+  { href: '/#contato', label: 'Contato' },
+];
+---
+<header class="sticky top-0 z-40 border-b border-white/5 bg-marinho">
+  <div class="container-site flex items-center justify-between gap-6 py-3">
+    <a href="/" aria-label="Saulo Galvão Advogados, página inicial" class="shrink-0">
+      <Image src={logo} alt="Saulo Galvão Advogados" width={150} class="h-10 w-auto sm:h-12" loading="eager" />
+    </a>
+    <nav aria-label="Principal" class="hidden lg:block">
+      <ul class="flex items-center gap-8 font-titulo text-sm font-medium text-white/80">
+        {links.map((l) => <li><a href={l.href} class="transition-colors hover:text-white">{l.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href={linkWhatsapp()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="header" class="btn-primario hidden !px-5 !py-2.5 sm:inline-flex">Agendar Consulta</a>
+      <details class="relative lg:hidden">
+        <summary class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md text-white hover:bg-white/10" aria-label="Abrir menu">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </summary>
+        <ul class="absolute right-0 mt-3 w-56 rounded-lg bg-white p-2 font-titulo text-sm text-marinho shadow-xl">
+          {links.map((l) => <li><a href={l.href} class="block rounded px-4 py-3 hover:bg-gelo">{l.label}</a></li>)}
+        </ul>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  // Fecha o menu mobile ao clicar em um link
+  document.querySelectorAll('header details a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
+  );
+</script>
