@@ -1,7 +1,7 @@
 import site from '../data/site.json';
 
-export function linkWhatsapp(mensagem: string = site.mensagemWhatsapp) {
-  return `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(mensagem)}`;
+export function linkWhatsapp(mensagem: string = site.mensagemWhatsapp, numero: string = site.whatsapp) {
+  return `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 }
 
-export const linkTelefone2 = `tel:+${site.telefone2}`;
+export const linkWhatsapp2 = () => linkWhatsapp(site.mensagemWhatsapp, site.telefone2);

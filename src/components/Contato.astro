@@ -1,7 +1,7 @@
 ---
 import Icone from './Icone.astro';
 import site from '../data/site.json';
-import { linkWhatsapp, linkTelefone2 } from '../lib/whatsapp';
+import { linkWhatsapp, linkWhatsapp2 } from '../lib/whatsapp';
 interface Props { area?: string }
 const { area = '' } = Astro.props;
 ---
@@ -19,9 +19,9 @@ const { area = '' } = Astro.props;
           </a>
         </li>
         <li>
-          <a href={linkTelefone2} data-conversao="phone_click" data-local="contato" class="flex items-center gap-4 hover:text-vinho">
-            <span class="flex h-11 w-11 items-center justify-center rounded-md bg-marinho text-white"><Icone nome="telefone" class="h-5 w-5" /></span>
-            <span><span class="block text-xs uppercase tracking-wider text-grafite/60">Telefone</span>{site.telefone2Exibicao}</span>
+          <a href={linkWhatsapp2()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="contato_2" class="flex items-center gap-4 hover:text-vinho">
+            <span class="flex h-11 w-11 items-center justify-center rounded-md bg-marinho text-white"><Icone nome="whatsapp" class="h-5 w-5" /></span>
+            <span><span class="block text-xs uppercase tracking-wider text-grafite/60">WhatsApp</span>{site.telefone2Exibicao}</span>
           </a>
         </li>
         <li>
