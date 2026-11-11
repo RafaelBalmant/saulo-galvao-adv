@@ -15,11 +15,11 @@ topicos:
     texto: Definição antecipada de regras de sucessão, doações com cláusulas protetivas e organização da transição entre gerações.
   - titulo: Organização patrimonial
     texto: Diagnóstico dos bens da família e da empresa para separar riscos e dar previsibilidade à gestão do patrimônio.
-  - titulo: Visão tributária integrada
-    texto: Análise dos efeitos tributários de cada estrutura, com base na formação do escritório em Direito Tributário e Finanças.
+  - titulo: Visão tributária
+    texto: Análise dos efeitos tributários de cada estrutura, com foco na eficiência tributária e segurança jurídica.
 faq:
   - pergunta: Holding é indicada para qualquer família?
     resposta: Não. A estrutura só faz sentido após a análise do patrimônio, dos objetivos da família e dos custos envolvidos. Esse estudo é a primeira etapa do trabalho.
   - pergunta: Qual a diferença entre planejamento sucessório e inventário?
-    resposta: O planejamento é feito em vida e organiza antecipadamente a transmissão dos bens. O inventário é o procedimento realizado após o falecimento.
+    resposta: O planejamento é feito em vida e organiza antecipadamente a transmissão dos bens. O inventário é o procedimento realizado após o falecimento, que geralmente é mais custoso e demorado.
 ---

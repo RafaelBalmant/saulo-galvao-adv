@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import logo from '../assets/logo-branco.png';
 import Icone from './Icone.astro';
 import site from '../data/site.json';
-import { linkWhatsapp } from '../lib/whatsapp';
+import { linkWhatsapp, linkTelefone2 } from '../lib/whatsapp';
 const areas = (await getCollection('areas')).sort((a, b) => a.data.ordem - b.data.ordem);
 const ano = new Date().getFullYear();
 ---
@@ -25,6 +25,7 @@ const ano = new Date().getFullYear();
       <h2 class="font-titulo text-sm font-semibold uppercase tracking-widest text-white">Contato</h2>
       <ul class="mt-5 space-y-4 text-sm">
         <li><a href={linkWhatsapp()} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="rodape" class="flex gap-3 hover:text-white"><Icone nome="whatsapp" class="h-5 w-5 shrink-0" />{site.telefoneExibicao}</a></li>
+        <li><a href={linkTelefone2} data-conversao="phone_click" data-local="rodape" class="flex gap-3 hover:text-white"><Icone nome="telefone" class="h-5 w-5 shrink-0" />{site.telefone2Exibicao}</a></li>
         <li><a href={`mailto:${site.email}`} data-conversao="email_click" data-local="rodape" class="flex gap-3 hover:text-white"><Icone nome="email" class="h-5 w-5 shrink-0" />{site.email}</a></li>
         {site.endereco && <li><a href={site.mapaUrl || undefined} target="_blank" rel="noopener" class="flex gap-3 hover:text-white"><Icone nome="local" class="h-5 w-5 shrink-0" />{site.endereco}</a></li>}
       </ul>

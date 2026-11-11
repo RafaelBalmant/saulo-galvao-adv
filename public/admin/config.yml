@@ -24,7 +24,9 @@ collections:
           - { name: advogado, label: Nome do advogado }
           - { name: oab, label: Número da OAB }
           - { name: whatsapp, label: "WhatsApp (só números, com 55 e DDD)" }
-          - { name: telefoneExibicao, label: Telefone exibido }
+          - { name: telefoneExibicao, label: WhatsApp exibido }
+          - { name: telefone2, label: "Telefone 2 (só números, com 55 e DDD)" }
+          - { name: telefone2Exibicao, label: Telefone 2 exibido }
           - { name: email, label: E-mail }
           - { name: endereco, label: Endereço }
           - { name: mapaUrl, label: Link do Google Maps }

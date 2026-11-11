@@ -15,7 +15,6 @@ export async function getStaticPaths() {
 const { area } = Astro.props;
 const d = area.data;
 const wa = linkWhatsapp(d.mensagemWhatsapp);
-const credenciais = ['Pós em Direito Tributário', 'Especialista em Direito Empresarial', 'MBA em Finanças'];
 const faqSchema = d.faq.length
   ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: d.faq.map((f) => ({ '@type': 'Question', name: f.pergunta, acceptedAnswer: { '@type': 'Answer', text: f.resposta } })) }]
   : [];
@@ -33,9 +32,6 @@ const faqSchema = d.faq.length
           <a href={wa} target="_blank" rel="noopener" data-conversao="whatsapp_click" data-local="hero_lp" class="btn-primario"><Icone nome="whatsapp" class="h-5 w-5" />Agendar Consulta</a>
           <a href="#contato" class="btn-contorno">Enviar mensagem</a>
         </div>
-        <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/70">
-          {credenciais.map((c) => <li class="flex items-center gap-2"><Icone nome="check" class="h-4 w-4 text-white" />{c}</li>)}
-        </ul>
       </div>
       <Image src={foto} alt={`${site.advogado} em atendimento`} widths={[400, 640, 900]} sizes="(min-width: 768px) 38vw, 90vw" class="aspect-[4/3] w-full rounded-lg object-cover shadow-2xl md:aspect-[4/5]" loading="eager" fetchpriority="high" />
     </div>

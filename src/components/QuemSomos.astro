@@ -1,8 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import foto from '../assets/saulo-escritorio.jpg';
-import Icone from './Icone.astro';
-const credenciais = ['Pós em Direito Tributário', 'Especialista em Direito Empresarial', 'MBA em Finanças'];
 ---
 <section id="quem-somos" class="bg-white py-20 lg:py-28">
   <div class="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -11,19 +9,11 @@ const credenciais = ['Pós em Direito Tributário', 'Especialista em Direito Emp
       <p class="eyebrow">Quem Somos</p>
       <h2 class="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">Visão pragmática para decisões empresariais</h2>
       <p class="mt-6 leading-relaxed">
-        Somos um escritório focado em inteligência jurídica, gestão de riscos e suporte estratégico para o ambiente empresarial. Atuamos com uma visão pragmática, aliando a técnica do Direito a uma compreensão financeira para um crescimento sustentável das empresas.
+        Somos um escritório focado em soluções jurídicas, gestão de riscos e suporte estratégico para empresas e empresários. Buscamos sempre resoluções pragmáticas, priorizando uma solução rápida, efetiva e financeiramente eficiente, aliando o conhecimento jurídico a uma compreensão multidisciplinar para um crescimento sustentável e a proteção das empresas.
       </p>
       <p class="mt-4 leading-relaxed">
-        <strong class="text-marinho">Dr. Saulo Galvão</strong> lidera o escritório com pós-graduação em Direito Tributário, especialização em Direito Empresarial e MBA em Finanças, uma formação que conecta os aspectos jurídicos e estratégicos do ecossistema de negócios.
+        <strong class="text-marinho">Dr. Saulo Galvão</strong> lidera o escritório com pós-graduação em Direito Tributário, especialização em Direito Empresarial, MBA em Finanças e expertise em Direito Bancário, uma formação que conecta os aspectos jurídicos e estratégicos do ecossistema de negócios.
       </p>
-      <ul class="mt-8 grid gap-3 sm:grid-cols-3">
-        {credenciais.map((c) => (
-          <li class="flex items-start gap-3 rounded-lg border border-marinho/10 bg-gelo p-4">
-            <Icone nome="capelo" class="mt-0.5 h-5 w-5 shrink-0 text-vinho" />
-            <span class="font-titulo text-sm font-semibold leading-snug text-marinho">{c}</span>
-          </li>
-        ))}
-      </ul>
     </div>
   </div>
 </section>

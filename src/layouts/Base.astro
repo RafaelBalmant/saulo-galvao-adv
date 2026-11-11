@@ -27,7 +27,7 @@ const schema = [
     url: Astro.site?.toString(),
     logo: new URL('/icon-512.png', Astro.site).toString(),
     image: new URL(image, Astro.site).toString(),
-    telephone: `+${site.whatsapp}`,
+    telephone: [`+${site.whatsapp}`, `+${site.telefone2}`],
     email: site.email,
     ...(site.endereco ? { address: { '@type': 'PostalAddress', streetAddress: site.endereco, addressLocality: site.cidade, addressRegion: site.uf, addressCountry: 'BR' } } : {}),
     founder: { '@type': 'Person', name: site.advogado, jobTitle: 'Advogado' },

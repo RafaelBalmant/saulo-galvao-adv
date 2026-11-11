@@ -19,7 +19,7 @@ topicos:
     texto: Condução de tratativas com credores em busca de condições compatíveis com a capacidade de pagamento do negócio.
 faq:
   - pergunta: Quais documentos são necessários para a análise inicial?
-    resposta: Em geral, os contratos firmados com a instituição financeira, extratos e eventuais notificações ou processos já existentes. Na conversa inicial indicamos exatamente o que será necessário.
+    resposta: Em geral, os contratos firmados com a instituição financeira, extratos e eventuais notificações ou processos já existentes.
   - pergunta: Toda situação de dívida bancária precisa ir para o Judiciário?
     resposta: Não. Muitas situações são tratadas por negociação extrajudicial. A via adequada depende da análise de cada contrato e do contexto da empresa.
 ---
